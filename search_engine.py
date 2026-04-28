@@ -1,8 +1,9 @@
 import streamlit as st
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain.agents import create_agent
 from langchain_community.tools import ArxivQueryRun, WikipediaQueryRun, DuckDuckGoSearchRun
 from langchain_community.utilities import ArxivAPIWrapper, WikipediaAPIWrapper
+
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 from dotenv import load_dotenv
 load_dotenv()
@@ -39,7 +40,7 @@ if prompt := st.chat_input("Ask something..."):
         st.warning("Please enter API key")
         st.stop()
     
-    llm = ChatOpenAI(api_key=api_key)
+    llm = ChatGroq(api_key=api_key)
 
     tools = [search, wiki, arxiv]
 
